@@ -111,5 +111,11 @@ func main() {
 		defer os.Remove(filePath)
 	})
 
+	r.GET("/health", healthCheck)
 	r.Run(":5000")
+}
+
+// Health Check
+func healthCheck(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"status": "ok"})
 }
